@@ -5,6 +5,7 @@ When generating Terraform and GitHub Actions code, you MUST strictly adhere to t
 ## 1. Directory Structure Enforcement
 - All GitHub Actions workflow templates MUST be placed in a `template/` directory (e.g., `template/plan.yml`, `template/apply.yml`).
 - All Terraform code (`.tf` files, modules, variables) MUST be placed in an `infrastructure/` directory.
+- Terraform resources is restricted to AzureRM (azure) and use other provider sch as azapi, azuread when required
 
 ## 2. Environment & Variable Management
 - You must support four distinct environments: `dev`, `test`, `sit`, and `prod`.
