@@ -40,6 +40,9 @@ You must generate three distinct GitHub Actions workflow templates:
 - The templates must be designed to support Terraform Cloud (TFC) or Terraform Enterprise.
 - Include comments or configuration blocks showing how to use `hashicorp/setup-terraform` with `cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}`.
 - Ensure the `backend "remote"` or `cloud` block is accounted for in the `infrastructure/` setup. -->
+## Use modules whenever possible. Please provide more instructions which module to use.
+
+## Please update README.md with instructions how we can run terraform init and validate locally. When running local, plase avoid using azure rm backend configurations. 
 
 ## Output Format
 - Provide the complete file paths for every code block (e.g., ````yaml:template/terraform-plan.yml`).
