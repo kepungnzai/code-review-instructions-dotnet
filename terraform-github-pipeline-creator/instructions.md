@@ -44,6 +44,8 @@ You must generate three distinct GitHub Actions workflow templates:
 
 ## Please update README.md with instructions how we can run terraform init and validate locally. When running local, plase avoid using azure rm backend configurations. 
 
+## Use terraform map whenever possible to prevent code duplication where we can use for_each to traverse through the variable for resource creations.
+
 ## Output Format
 - Provide the complete file paths for every code block (e.g., ````yaml:template/terraform-plan.yml`).
 - Include brief, professional comments explaining *why* a specific safety measure (like `-detailed-exitcode`) is used.
