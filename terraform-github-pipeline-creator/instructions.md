@@ -3,9 +3,8 @@
 When generating Terraform and GitHub Actions code, you MUST strictly adhere to the following rules. Deviating from these rules is considered a failure.
 
 ## 1. Directory Structure Enforcement
-- All GitHub Actions workflow templates MUST be placed in a `template/` directory (e.g., `template/plan.yml`, `template/apply.yml`).
+- All GitHub Actions should be converted into re-usable actions or template whenever possible 
 - All Terraform code (`.tf` files, modules, variables) MUST be placed in an `infrastructure/` directory.
-- Terraform resources is restricted to AzureRM (azure) and use other provider sch as azapi, azuread when required
 
 ## 2. Environment & Variable Management
 - You must support four distinct environments: `dev`, `test`, `sit`, and `prod`.
@@ -14,9 +13,9 @@ When generating Terraform and GitHub Actions code, you MUST strictly adhere to t
 
 ## 3. Workflow Separation (The 3-Workflow Rule)
 You must generate three distinct GitHub Actions workflow templates:
-1. `template/terraform-plan.yml`: Handles planning and change detection.
-2. `template/terraform-apply.yml`: Handles execution. MUST include a GitHub Actions Environment with `required_reviewers` for manual approval.
-3. `template/terraform-destroy-plan.yml`: A separate workflow specifically for planning destruction (to review what will be deleted before any action is taken).
+1. `terraform-plan.yml`: Handles planning and change detection.
+2. `terraform-apply.yml`: Handles execution. MUST include a GitHub Actions Environment with `required_reviewers` for manual approval.
+3. `terraform-destroy-plan.yml`: A separate workflow specifically for planning destruction (to review what will be deleted before any action is taken).
 
 ## 4. Change Detection (No-Op Optimization)
 - In the plan workflow, you MUST use `terraform plan -detailed-exitcode`.
@@ -40,11 +39,6 @@ You must generate three distinct GitHub Actions workflow templates:
 - The templates must be designed to support Terraform Cloud (TFC) or Terraform Enterprise.
 - Include comments or configuration blocks showing how to use `hashicorp/setup-terraform` with `cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}`.
 - Ensure the `backend "remote"` or `cloud` block is accounted for in the `infrastructure/` setup. -->
-## Use modules whenever possible. Please provide more instructions which module to use.
-
-## Please update README.md with instructions how we can run terraform init and validate locally. When running local, plase avoid using azure rm backend configurations. 
-
-## Use terraform map whenever possible to prevent code duplication where we can use for_each to traverse through the variable for resource creations.
 
 ## Output Format
 - Provide the complete file paths for every code block (e.g., ````yaml:template/terraform-plan.yml`).
